@@ -4,13 +4,13 @@
 <head>
     <meta charset="utf-8">
     <title>Weather-DashBoard</title>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css"
-        integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">
     <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-ho+j7jyWK8fNQe+A12Hb8AhRq26LrZ/JpcUGGOn+Y7RsweNrtN/tE3MoK7ZeZDyx"
         crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css"
+        integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">
     <link rel="preconnect" href="https://fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css2?family=Kufam:wght@500&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
@@ -35,78 +35,148 @@
                 </div>
             </div>
             <div class="col-lg-8">
-                One of three columns
+                <div class='row'>
+                    <div class="card">
+                        <div class="card-body">
+                            This is some text within a card body.
+                        </div>
+                    </div>
+                </div>
+                <div class='row'>
+                    <div class=col-lg-2>
+                        <div id = 'day1' class="card">
+ 
+                        </div>
+                    </div>
+                    <div class=col-lg-2>
+                        <div class="card">
+                            <div class="card-body">
+                                This is some text within a card body.
+                            </div>
+                        </div>
+                    </div>
+                    <div class=col-lg-2>
+                        <div class="card">
+                            <div class="card-body">
+                                This is some text within a card body.
+                            </div>
+                        </div>
+                    </div>
+                    <div class=col-lg-2>
+                        <div class="card">
+                            <div class="card-body">
+                                This is some text within a card body.
+                            </div>
+                        </div>
+                    </div>
+                    <div class=col-lg-2>
+                        <div class="card">
+                            <div class="card-body">
+                                This is some text within a card body.
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
 
         </div>
     </div>
-    
-    <script type="text/javascript">
-    var city = $('#city').val()
-    var city = "";
-    function getCity(){
-        var city = $('#city').val()
-    }
-        function search() {
-            if (city != "") {
-                var APIKey = "633c7b8891cfcba2af6aa741f07696ff";
-                // Here we are building the URL we need to query the database
-                var queryURL = "https://api.openweathermap.org/data/2.5/forecast?q=" +
-                    city + "&units=imperial&appid=" + APIKey;
-                $.ajax({
-                    url: queryURL,
-                    method: "GET"
+
+            <script type="text/javascript">
+                var city = "";
+
+                function search() {
+                    var APIKey = "633c7b8891cfcba2af6aa741f07696ff";
+                    // Here we are building the URL we need to query the database
+                    var queryURL = "https://api.openweathermap.org/data/2.5/forecast?q=" +
+                        city + "&units=imperial&appid=" + APIKey;
+                    $.ajax({
+                        url: queryURL,
+                        method: "GET"
+                    })
+                        // We store all of the retrieved data inside of an object called "response"
+                        .then(function (response) {
+                            // Log the resulting object
+                            console.log(response);
+                            // Logs Temperature Next Day
+                            var temp1 = JSON.stringify(response.list[5].main.temp + ' Farenheit')
+                            var date1 = JSON.stringify(response.list[5].dt_txt.slice(0, 10))
+                            var hum1 = JSON.stringify('humidity: ' + response.list[5].main.humidity + '%')
+                            var sky1 = JSON.stringify(response.list[5].weather[0].main)
+                            console.log(temp1, date1, hum1, sky1)
+                            var temp2 = JSON.stringify(response.list[13].main.temp + ' Farenheit')
+                            var date2 = JSON.stringify(response.list[13].dt_txt.slice(0, 10))
+                            var hum2 = JSON.stringify('humidity: ' + response.list[13].main.humidity + '%')
+                            var sky2 = JSON.stringify(response.list[13].weather[0].main)
+                            console.log(temp2, date2, hum2, sky2)
+                            var temp3 = JSON.stringify(response.list[21].main.temp + ' Farenheit')
+                            var date3 = JSON.stringify(response.list[21].dt_txt.slice(0, 10))
+                            var hum3 = JSON.stringify('humidity: ' + response.list[21].main.humidity + '%')
+                            var sky3 = JSON.stringify(response.list[21].weather[0].main)
+                            console.log(temp3, date3, hum3, sky3)
+                            var temp4 = JSON.stringify(response.list[29].main.temp + ' Farenheit')
+                            var date4 = JSON.stringify(response.list[29].dt_txt.slice(0, 10))
+                            var hum4 = JSON.stringify('humidity: ' + response.list[29].main.humidity + '%')
+                            var sky4 = JSON.stringify(response.list[29].weather[0].main)
+                            console.log(temp4, date4, hum4, sky4)
+                            var temp5 = JSON.stringify(response.list[37].main.temp + ' Farenheit')
+                            var date5 = JSON.stringify(response.list[37].dt_txt.slice(0, 10))
+                            var hum5 = JSON.stringify('humidity: ' + response.list[37].main.humidity + '%')
+                            var sky5 = JSON.stringify(response.list[37].weather[0].main)
+                            console.log(temp5, date5, hum5, sky5)
+                            $('#day1').append('<div class ="card-body">')
+
+
+                        })
+                }
+
+                $('#button-addon1').on('click', function () {
+                    city = $('#city').val()
+                    if (city != "") {
+                        if (city != $('#search').val()) {
+                            $('#city-buttons').prepend($('<input>').attr({ class: "btn btn-outline-secondary", id: 'search', type: 'button', value: $('#city').val() }));
+                            setTimeout(function () {
+                                $("#search").on('click', function () {
+                                    city = $(this).val()
+                                    return search();
+                                })
+                            }, 400)
+
+                        }
+                        return search();
+
+                    }
+
+
                 })
-                    // We store all of the retrieved data inside of an object called "response"
-                    .then(function (response) {
-                        // Log the resulting object
-                        console.log(response);
-                        // Logs Temperature Next Day
-                        var temp1 = JSON.stringify(response.list[5].main.temp + ' Farenheit')
-                        var date1 = JSON.stringify(response.list[5].dt_txt.slice(0, 10))
-                        var hum1 = JSON.stringify('humidity: ' + response.list[5].main.humidity + '%')
-                        var sky1 = JSON.stringify(response.list[5].weather[0].main)
-                        console.log(temp1,date1,hum1,sky1)
-                        var temp2 = JSON.stringify(response.list[13].main.temp + ' Farenheit')
-                        var date2 = JSON.stringify(response.list[13].dt_txt.slice(0, 10))
-                        var hum2 = JSON.stringify('humidity: ' + response.list[13].main.humidity + '%')
-                        var sky2 = JSON.stringify(response.list[13].weather[0].main)
-                        console.log(temp2,date2,hum2,sky2)
-                        var temp3 = JSON.stringify(response.list[21].main.temp + ' Farenheit')
-                        var date3 = JSON.stringify(response.list[21].dt_txt.slice(0, 10))
-                        var hum3 = JSON.stringify('humidity: ' + response.list[21].main.humidity + '%')
-                        var sky3 = JSON.stringify(response.list[21].weather[0].main)
-                        console.log(temp3,date3,hum3,sky3)
-                        var temp4 = JSON.stringify(response.list[29].main.temp + ' Farenheit')
-                        var date4 = JSON.stringify(response.list[29].dt_txt.slice(0, 10))
-                        var hum4 = JSON.stringify('humidity: ' + response.list[29].main.humidity + '%')
-                        var sky4 = JSON.stringify(response.list[29].weather[0].main)
-                        console.log(temp4,date4,hum4,sky4)
-                        var temp5 = JSON.stringify(response.list[37].main.temp + ' Farenheit')
-                        var date5 = JSON.stringify(response.list[37].dt_txt.slice(0, 10))
-                        var hum5 = JSON.stringify('humidity: ' + response.list[37].main.humidity + '%')
-                        var sky5 = JSON.stringify(response.list[37].weather[0].main)
-                        console.log(temp5,date5,hum5,sky5)
+                $(document).keypress(function (e) {
+                    if (e.which == 13) {
+                        city = $('#city').val()
+                        if (city != "") {
+                            if (city != $('#search').val()) {
+                                $('#city-buttons').prepend($('<input>').attr({ class: "btn btn-outline-secondary", id: 'search', type: 'button', value: $('#city').val() }));
+                                setTimeout(function () {
+                                $("#search").on('click', function () {
+                                    city = $(this).val()
+                                    return search();
+                                })
+                            }, 400)
+                            }
+
+                        }
+                        return search();
+                    }
+
+                }
+                );
+
+                $("#search").on('click', function () {
+                    console.log('Anything')
+                })
 
 
-                    });
-            }
 
-
-        }
-        $('#button-addon1').on('click',function(){
-            city = $('#city').val()
-            return search();
-            
-        })
-        $(document).keypress(function (e) {
-            if (e.which == 13) {
-                city = $('#city').val()
-                return search();
-            }
-        });
-
-    </script>
+            </script>
 </body>
 
 </html>
