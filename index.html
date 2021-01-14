@@ -42,141 +42,161 @@
                         </div>
                     </div>
                 </div>
-                <div class='row'>
-                    <div class=col-lg-2>
-                        <div id = 'day1' class="card">
- 
-                        </div>
-                    </div>
-                    <div class=col-lg-2>
-                        <div class="card">
-                            <div class="card-body">
-                                This is some text within a card body.
-                            </div>
-                        </div>
-                    </div>
-                    <div class=col-lg-2>
-                        <div class="card">
-                            <div class="card-body">
-                                This is some text within a card body.
-                            </div>
-                        </div>
-                    </div>
-                    <div class=col-lg-2>
-                        <div class="card">
-                            <div class="card-body">
-                                This is some text within a card body.
-                            </div>
-                        </div>
-                    </div>
-                    <div class=col-lg-2>
-                        <div class="card">
-                            <div class="card-body">
-                                This is some text within a card body.
-                            </div>
-                        </div>
-                    </div>
+                <h1 id='5day'></h1>
+                <div class='row' id='forecast'>
+
                 </div>
             </div>
 
         </div>
     </div>
 
-            <script type="text/javascript">
-                var city = "";
+    <script type="text/javascript">
+        var city = "";
 
-                function search() {
-                    var APIKey = "633c7b8891cfcba2af6aa741f07696ff";
-                    // Here we are building the URL we need to query the database
-                    var queryURL = "https://api.openweathermap.org/data/2.5/forecast?q=" +
-                        city + "&units=imperial&appid=" + APIKey;
-                    $.ajax({
-                        url: queryURL,
-                        method: "GET"
-                    })
-                        // We store all of the retrieved data inside of an object called "response"
-                        .then(function (response) {
-                            // Log the resulting object
-                            console.log(response);
-                            // Logs Temperature Next Day
-                            var temp1 = JSON.stringify(response.list[5].main.temp + ' Farenheit')
-                            var date1 = JSON.stringify(response.list[5].dt_txt.slice(0, 10))
-                            var hum1 = JSON.stringify('humidity: ' + response.list[5].main.humidity + '%')
-                            var sky1 = JSON.stringify(response.list[5].weather[0].main)
-                            console.log(temp1, date1, hum1, sky1)
-                            var temp2 = JSON.stringify(response.list[13].main.temp + ' Farenheit')
-                            var date2 = JSON.stringify(response.list[13].dt_txt.slice(0, 10))
-                            var hum2 = JSON.stringify('humidity: ' + response.list[13].main.humidity + '%')
-                            var sky2 = JSON.stringify(response.list[13].weather[0].main)
-                            console.log(temp2, date2, hum2, sky2)
-                            var temp3 = JSON.stringify(response.list[21].main.temp + ' Farenheit')
-                            var date3 = JSON.stringify(response.list[21].dt_txt.slice(0, 10))
-                            var hum3 = JSON.stringify('humidity: ' + response.list[21].main.humidity + '%')
-                            var sky3 = JSON.stringify(response.list[21].weather[0].main)
-                            console.log(temp3, date3, hum3, sky3)
-                            var temp4 = JSON.stringify(response.list[29].main.temp + ' Farenheit')
-                            var date4 = JSON.stringify(response.list[29].dt_txt.slice(0, 10))
-                            var hum4 = JSON.stringify('humidity: ' + response.list[29].main.humidity + '%')
-                            var sky4 = JSON.stringify(response.list[29].weather[0].main)
-                            console.log(temp4, date4, hum4, sky4)
-                            var temp5 = JSON.stringify(response.list[37].main.temp + ' Farenheit')
-                            var date5 = JSON.stringify(response.list[37].dt_txt.slice(0, 10))
-                            var hum5 = JSON.stringify('humidity: ' + response.list[37].main.humidity + '%')
-                            var sky5 = JSON.stringify(response.list[37].weather[0].main)
-                            console.log(temp5, date5, hum5, sky5)
-                            $('#day1').append('<div class ="card-body">')
+        function search() {
+            var APIKey = "633c7b8891cfcba2af6aa741f07696ff";
+            // Here we are building the URL we need to query the database
+            var queryURL = "https://api.openweathermap.org/data/2.5/forecast?q=" +
+                city + "&units=imperial&appid=" + APIKey;
+            var queryURL1 = "https://api.openweathermap.org/data/2.5/weather?q=" +
+                city + "&units=imperial&appid=" + APIKey;
+            $.ajax({
+                url: queryURL,
+                method: "GET"
+            })
+                // We store all of the retrieved data inside of an object called "response"
+                .then(function (response) {
+                    // Log the resulting object
+                    console.log(response);
+                    // Logs Temperature Next Day
+                    var temp1 = response.list[5].main.temp + ' F'
+                    var date1 = response.list[5].dt_txt.slice(0, 10)
+                    var hum1 = 'humidity: ' + response.list[5].main.humidity + '%'
+                    var sky1 = response.list[5].weather[0].main
+                    console.log(temp1, date1, hum1, sky1)
+                    var temp2 = response.list[13].main.temp + ' F'
+                    var date2 = response.list[13].dt_txt.slice(0, 10)
+                    var hum2 = 'humidity: ' + response.list[13].main.humidity + '%'
+                    var sky2 = response.list[13].weather[0].main
+                    console.log(temp2, date2, hum2, sky2)
+                    var temp3 = response.list[21].main.temp + ' F'
+                    var date3 = response.list[21].dt_txt.slice(0, 10)
+                    var hum3 = 'humidity: ' + response.list[21].main.humidity + '%'
+                    var sky3 = response.list[21].weather[0].main
+                    console.log(temp3, date3, hum3, sky3)
+                    var temp4 = response.list[29].main.temp + ' F'
+                    var date4 = response.list[29].dt_txt.slice(0, 10)
+                    var hum4 = 'humidity: ' + response.list[29].main.humidity + '%'
+                    var sky4 = response.list[29].weather[0].main
+                    console.log(temp4, date4, hum4, sky4)
+                    var temp5 = response.list[37].main.temp + ' F'
+                    var date5 = response.list[37].dt_txt.slice(0, 10)
+                    var hum5 = 'humidity: ' + response.list[37].main.humidity + '%'
+                    var sky5 = response.list[37].weather[0].main
+                    console.log(temp5, date5, hum5, sky5)
+                    $('#5day').text('5-Day Forecast')
+                    $('#forecast').empty().append('<div class=col-lg-2><div id = "day1" class="card"><p id = "weather-1"></p></div></div>')
+                    $('#weather-1').empty().append('<p class ="p1">')
+                    $('#weather-1 .p1').append(date1)
+                    $('#weather-1').append('<p class ="p2">')
+                    $('#weather-1 .p2').append(temp1)
+                    $('#weather-1').append('<p class ="p3">')
+                    $('#weather-1 .p3').append(hum1)
+                    $('#forecast').append('<div class=col-lg-2><div id = "day2" class="card"><p id = "weather-2"></p></div></div>')
+                    $('#weather-2').empty().append('<p class ="p1">')
+                    $('#weather-2 .p1').append(date2)
+                    $('#weather-2').append('<p class ="p2">')
+                    $('#weather-2 .p2').append(temp2)
+                    $('#weather-2').append('<p class ="p3">')
+                    $('#weather-2 .p3').append(hum2)
+                    $('#forecast').append('<div class=col-lg-2><div id = "day3" class="card"><p id = "weather-3"></p></div></div>')
+                    $('#weather-3').empty().append('<p class ="p1">')
+                    $('#weather-3 .p1').append(date3)
+                    $('#weather-3').append('<p class ="p2">')
+                    $('#weather-3 .p2').append(temp3)
+                    $('#weather-3').append('<p class ="p3">')
+                    $('#weather-3 .p3').append(hum3)
+                    $('#forecast').append('<div class=col-lg-2><div id = "day4" class="card"><p id = "weather-4"></p></div></div>')
+                    $('#weather-4').empty().append('<p class ="p1">')
+                    $('#weather-4 .p1').append(date4)
+                    $('#weather-4').append('<p class ="p2">')
+                    $('#weather-4 .p2').append(temp4)
+                    $('#weather-4').append('<p class ="p3">')
+                    $('#weather-4 .p3').append(hum4)
+                    $('#forecast').append('<div class=col-lg-2><div id = "day5" class="card"><p id = "weather-5"></p></div></div>')
+                    $('#weather-5').empty().append('<p class ="p1">')
+                    $('#weather-5 .p1').append(date5)
+                    $('#weather-5').append('<p class ="p2">')
+                    $('#weather-5 .p2').append(temp5)
+                    $('#weather-5').append('<p class ="p3">')
+                    $('#weather-5 .p3').append(hum5)
 
 
+                })
+                $.ajax({
+                url: queryURL1,
+                method: "GET"
+            })
+                // We store all of the retrieved data inside of an object called "response"
+                .then(function (response) {
+                    console.log(response)
+                    var tempC = response.main.temp;
+                    console.log(tempC+'F')
+                    var humC = response.main.humidity;
+                    console.log(humC+'%')
+                    var windC = response.wind.speed;
+                    console.log(windC+' MPH')
+                })
+        }
+
+        $('#button-addon1').on('click', function () {
+            city = $('#city').val()
+            if (city != "") {
+                if (city != $('#search').val()) {
+                    $('#city-buttons').prepend($('<input>').attr({ class: "btn btn-outline-secondary", id: 'search', type: 'button', value: $('#city').val() }));
+                    setTimeout(function () {
+                        $("#search").on('click', function () {
+                            city = $(this).val()
+                            return search();
                         })
+                    }, 400)
+
                 }
+                return search();
 
-                $('#button-addon1').on('click', function () {
-                    city = $('#city').val()
-                    if (city != "") {
-                        if (city != $('#search').val()) {
-                            $('#city-buttons').prepend($('<input>').attr({ class: "btn btn-outline-secondary", id: 'search', type: 'button', value: $('#city').val() }));
-                            setTimeout(function () {
-                                $("#search").on('click', function () {
-                                    city = $(this).val()
-                                    return search();
-                                })
-                            }, 400)
-
-                        }
-                        return search();
-
-                    }
+            }
 
 
-                })
-                $(document).keypress(function (e) {
-                    if (e.which == 13) {
-                        city = $('#city').val()
-                        if (city != "") {
-                            if (city != $('#search').val()) {
-                                $('#city-buttons').prepend($('<input>').attr({ class: "btn btn-outline-secondary", id: 'search', type: 'button', value: $('#city').val() }));
-                                setTimeout(function () {
-                                $("#search").on('click', function () {
-                                    city = $(this).val()
-                                    return search();
-                                })
-                            }, 400)
-                            }
-
-                        }
-                        return search();
+        })
+        $(document).keypress(function (e) {
+            if (e.which == 13) {
+                city = $('#city').val()
+                if (city != "") {
+                    if (city != $('#search').val()) {
+                        $('#city-buttons').prepend($('<input>').attr({ class: "btn btn-outline-secondary", id: 'search', type: 'button', value: $('#city').val() }));
+                        setTimeout(function () {
+                            $("#search").on('click', function () {
+                                city = $(this).val()
+                                return search();
+                            })
+                        }, 400)
                     }
 
                 }
-                );
+                return search();
+            }
 
-                $("#search").on('click', function () {
-                    console.log('Anything')
-                })
+        }
+        );
+
+        $("#search").on('click', function () {
+            console.log('Anything')
+        })
 
 
 
-            </script>
+    </script>
 </body>
 
 </html>
