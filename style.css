@@ -1,0 +1,13 @@
+.jumbotron{
+    background-color: aqua;
+}
+h1{
+    font-weight: 400!important;
+    font-family: 'Kufam', cursive;;
+}
+.container{
+    max-width: 100%;
+}
+.input-group{
+    max-width: 100%;
+}
