@@ -9,3 +9,4 @@ Once filling in the search bar, you are able to hit 'enter' on your keyboard, or
 Once doing this you will be given the Current weather data, which includes: The City Name, The Date, an image for the sky conditions, the temperature, humidty, wind velocity, and UV index. 
 The UV index will change colors based off of its severity. Green meaning fine, Orange meaning medium, Red being extreme.
 This info is also displayed for the 5 day forecast, excluding wind speed and UV index
+![Wesbite ScreenShot](https://github.com/tafseer-khan/Weather-Dashboard/blob/main/Assets/Webpage_Screenshot.png)
