@@ -22,7 +22,7 @@
     </div>
     <div class="container">
         <div class="row">
-            <div class="col-lg-4">
+            <div id ='search-column' class="col-lg-4">
                 <div class="input-group mb-3">
                     <div class="input-group-prepend">
                         <button class="btn btn-outline-secondary" type="button" id="button-addon1">Search</button>
@@ -35,12 +35,8 @@
                 </div>
             </div>
             <div class="col-lg-8">
-                <div class='row'>
-                    <div class="card">
-                        <div class="card-body">
-                            This is some text within a card body.
-                        </div>
-                    </div>
+                <div id='today' class='row'>
+
                 </div>
                 <h1 id='5day'></h1>
                 <div class='row' id='forecast'>
@@ -134,7 +130,7 @@
 
 
                 })
-                $.ajax({
+            $.ajax({
                 url: queryURL1,
                 method: "GET"
             })
@@ -142,11 +138,42 @@
                 .then(function (response) {
                     console.log(response)
                     var tempC = response.main.temp;
-                    console.log(tempC+'F')
                     var humC = response.main.humidity;
-                    console.log(humC+'%')
                     var windC = response.wind.speed;
-                    console.log(windC+' MPH')
+                    var DateNow = Date.now();
+                    var DN = ((Date(DateNow.toString())).toString()).slice(0,16)
+                    var lat = response.coord.lat;
+                    var lon = response.coord.lon;
+                    $('#today').empty().append('<div class="card"><div id= "current" class="card-body"></div></div>')
+                    $('#current').empty().append('<p class ="p1">')
+                    $('#current .p1').append(city+" "+DN)
+                    $('#current').append('<p class ="p2">')
+                    $('#current .p2').append(tempC + ' F')
+                    $('#current').append('<p class ="p3">')
+                    $('#current .p3').append(humC + '%')
+                    $('#current').append('<p class ="p4">')
+                    $('#current .p4').append(windC + ' MPH')
+                    var queryURL2 = "http://api.openweathermap.org/data/2.5/uvi?lat=" + lat + "&lon=" + lon + "&appid=" + APIKey;
+                    $.ajax({
+                        url: queryURL2,
+                        method: "GET"
+                    })
+                        .then(function (response) {
+                            console.log(response)
+                            var uv = response.value
+                            $('#current').append('<p class ="p5">')
+                            $('#current .p5').append('UV index: '+uv)
+                            if(uv <= 5){
+                                $('#current .p5').css('background-color','orange')
+                            }
+                            if(uv <= 3){
+                                $('#current .p5').css('background-color','green')
+                            }
+                            if(uv > 5){
+                                $('#current .p5').css('background-color','red')
+                            }
+
+                        })
                 })
         }
 
