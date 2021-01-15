@@ -57,6 +57,13 @@
 
     <script type="text/javascript">
         var city = "";
+        // If local storage variable 'last_city' is available then set city variable to the local Storage value and run search function
+        $(document).ready(function(){
+            if (localStorage.getItem('last_city')!= null){
+                city = localStorage.getItem('last_city')
+                return search();
+            }
+        })
         // Our main function which will create new cards, and gather information from our API
         function search() {
             var APIKey = "633c7b8891cfcba2af6aa741f07696ff";
@@ -71,6 +78,7 @@
             })
                 // We store all of the retrieved data inside of an object called "response"
                 .then(function (response) {
+                    localStorage.setItem('last_city', city)
                     // Log the resulting object
                     console.log(response);
                     // Establish variables for all of our 5 day forecast weather data
