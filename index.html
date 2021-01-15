@@ -144,9 +144,11 @@
                     var DN = ((Date(DateNow.toString())).toString()).slice(0,16)
                     var lat = response.coord.lat;
                     var lon = response.coord.lon;
+                    var skyC = response.weather[0].main;
                     $('#today').empty().append('<div class="card"><div id= "current" class="card-body"></div></div>')
                     $('#current').empty().append('<p class ="p1">')
                     $('#current .p1').append(city+" "+DN)
+                    $('#current').append('<img src="Assets/Sunny.png">')
                     $('#current').append('<p class ="p2">')
                     $('#current .p2').append(tempC + ' F')
                     $('#current').append('<p class ="p3">')
