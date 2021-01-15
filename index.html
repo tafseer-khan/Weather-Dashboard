@@ -243,7 +243,7 @@
                     $('#current').append('<p class ="p4">')
                     $('#current .p4').append(windC + ' MPH')
                     // Our final call which will get our UV index
-                    var queryURL2 = "http://api.openweathermap.org/data/2.5/uvi?lat=" + lat + "&lon=" + lon + "&appid=" + APIKey;
+                    var queryURL2 = "https://api.openweathermap.org/data/2.5/uvi?lat=" + lat + "&lon=" + lon + "&appid=" + APIKey;
                     $.ajax({
                         url: queryURL2,
                         method: "GET"
