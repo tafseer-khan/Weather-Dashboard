@@ -95,6 +95,18 @@
                     $('#forecast').empty().append('<div class=col-lg-2><div id = "day1" class="card"><p id = "weather-1"></p></div></div>')
                     $('#weather-1').empty().append('<p class ="p1">')
                     $('#weather-1 .p1').append(date1)
+                    if(sky1 == 'Clear'){
+                        $('#weather-1').append('<img src="Assets/Sunny.png">')
+                    }
+                    if(sky1 == 'Rain'){
+                        $('#weather-1').append('<img src="Assets/Rainy.png">')
+                    }
+                    if(sky1 == 'Snow'){
+                        $('#weather-1').append('<img src="Assets/Snowing.png">') 
+                    }
+                    if(sky1 == 'Clouds'){
+                        $('#weather-1').append('<img src="Assets/Cloudy.png">') 
+                    }
                     $('#weather-1').append('<p class ="p2">')
                     $('#weather-1 .p2').append(temp1)
                     $('#weather-1').append('<p class ="p3">')
@@ -102,6 +114,18 @@
                     $('#forecast').append('<div class=col-lg-2><div id = "day2" class="card"><p id = "weather-2"></p></div></div>')
                     $('#weather-2').empty().append('<p class ="p1">')
                     $('#weather-2 .p1').append(date2)
+                    if(sky2 == 'Clear'){
+                        $('#weather-2').append('<img src="Assets/Sunny.png">')
+                    }
+                    if(sky2 == 'Rain'){
+                        $('#weather-2').append('<img src="Assets/Rainy.png">')
+                    }
+                    if(sky2 == 'Snow'){
+                        $('#weather-2').append('<img src="Assets/Snowing.png">') 
+                    }
+                    if(sky2 == 'Clouds'){
+                        $('#weather-2').append('<img src="Assets/Cloudy.png">') 
+                    }
                     $('#weather-2').append('<p class ="p2">')
                     $('#weather-2 .p2').append(temp2)
                     $('#weather-2').append('<p class ="p3">')
@@ -109,6 +133,18 @@
                     $('#forecast').append('<div class=col-lg-2><div id = "day3" class="card"><p id = "weather-3"></p></div></div>')
                     $('#weather-3').empty().append('<p class ="p1">')
                     $('#weather-3 .p1').append(date3)
+                    if(sky3 == 'Clear'){
+                        $('#weather-3').append('<img src="Assets/Sunny.png">')
+                    }
+                    if(sky3 == 'Rain'){
+                        $('#weather-3').append('<img src="Assets/Rainy.png">')
+                    }
+                    if(sky3 == 'Snow'){
+                        $('#weather-3').append('<img src="Assets/Snowing.png">') 
+                    }
+                    if(sky3 == 'Clouds'){
+                        $('#weather-3').append('<img src="Assets/Cloudy.png">') 
+                    }
                     $('#weather-3').append('<p class ="p2">')
                     $('#weather-3 .p2').append(temp3)
                     $('#weather-3').append('<p class ="p3">')
@@ -116,6 +152,19 @@
                     $('#forecast').append('<div class=col-lg-2><div id = "day4" class="card"><p id = "weather-4"></p></div></div>')
                     $('#weather-4').empty().append('<p class ="p1">')
                     $('#weather-4 .p1').append(date4)
+                    if(sky4 == 'Clear'){
+                        $('#weather-4').append('<img src="Assets/Sunny.png">')
+                    }
+                    if(sky4 == 'Rain'){
+                        $('#weather-4').append('<img src="Assets/Rainy.png">')
+                    }
+                    if(sky4 == 'Snow'){
+                        $('#weather-4').append('<img src="Assets/Snowing.png">') 
+                    }
+                    if(sky4 == 'Clouds'){
+                        $('#weather-4').append('<img src="Assets/Cloudy.png">') 
+                    }
+
                     $('#weather-4').append('<p class ="p2">')
                     $('#weather-4 .p2').append(temp4)
                     $('#weather-4').append('<p class ="p3">')
@@ -123,6 +172,19 @@
                     $('#forecast').append('<div class=col-lg-2><div id = "day5" class="card"><p id = "weather-5"></p></div></div>')
                     $('#weather-5').empty().append('<p class ="p1">')
                     $('#weather-5 .p1').append(date5)
+                    if(sky5 == 'Clear'){
+                        $('#weather-5').append('<img src="Assets/Sunny.png">')
+                    }
+                    if(sky5 == 'Rain'){
+                        $('#weather-5').append('<img src="Assets/Rainy.png">')
+                    }
+                    if(sky5 == 'Snow'){
+                        $('#weather-5').append('<img src="Assets/Snowing.png">') 
+                    }
+                    if(sky5 == 'Clouds'){
+                        $('#weather-5').append('<img src="Assets/Cloudy.png">') 
+                    }
+
                     $('#weather-5').append('<p class ="p2">')
                     $('#weather-5 .p2').append(temp5)
                     $('#weather-5').append('<p class ="p3">')
@@ -148,7 +210,18 @@
                     $('#today').empty().append('<div class="card"><div id= "current" class="card-body"></div></div>')
                     $('#current').empty().append('<p class ="p1">')
                     $('#current .p1').append(city+" "+DN)
-                    $('#current').append('<img src="Assets/Sunny.png">')
+                    if(skyC == 'Clear'){
+                        $('#current').append('<img src="Assets/Sunny.png">')
+                    }
+                    if(skyC == 'Rain'){
+                        $('#current').append('<img src="Assets/Rainy.png">')
+                    }
+                    if(skyC == 'Snow'){
+                        $('#current').append('<img src="Assets/Snowing.png">') 
+                    }
+                    if(skyC == 'Clouds'){
+                        $('#current').append('<img src="Assets/Cloudy.png">') 
+                    }
                     $('#current').append('<p class ="p2">')
                     $('#current .p2').append(tempC + ' F')
                     $('#current').append('<p class ="p3">')
