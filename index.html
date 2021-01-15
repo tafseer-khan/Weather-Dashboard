@@ -4,25 +4,31 @@
 <head>
     <meta charset="utf-8">
     <title>Weather-DashBoard</title>
+    <!-- External Scripts Used: Jquery, and BootStrap -->
     <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-ho+j7jyWK8fNQe+A12Hb8AhRq26LrZ/JpcUGGOn+Y7RsweNrtN/tE3MoK7ZeZDyx"
         crossorigin="anonymous"></script>
+    <!-- External CSS Used: BootStrap, and Google Fonts -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css"
         integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">
     <link rel="preconnect" href="https://fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css2?family=Kufam:wght@500&display=swap" rel="stylesheet">
+    <!-- My css Stylesheet -->
     <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
+    <!-- Bootstrap Jumbotron used for Title -->
     <div class="jumbotron">
         <h1 class="display-4 text-center">Weather Dashboard</h1>
     </div>
+    <!-- Bootstrap Columns and Rows for Inputs and Cards -->
     <div class="container">
         <div class="row">
             <div id ='search-column' class="col-lg-4">
+    <!-- Bootstrap Search Bar With Button for inputing City Name -->
                 <div class="input-group mb-3">
                     <div class="input-group-prepend">
                         <button class="btn btn-outline-secondary" type="button" id="button-addon1">Search</button>
@@ -30,10 +36,12 @@
                     <input type="text" id='city' class="form-control" placeholder="City" aria-label="Username"
                         aria-describedby="basic-addon1">
                 </div>
+    <!-- Will later be the container for buttons which will be used as our search History -->
                 <div id="city-buttons">
 
                 </div>
             </div>
+    <!-- Will later be the container for our Current and Future Forecasts -->
             <div class="col-lg-8">
                 <div id='today' class='row'>
 
@@ -49,10 +57,10 @@
 
     <script type="text/javascript">
         var city = "";
-
+        // Our main function which will create new cards, and gather information from our API
         function search() {
             var APIKey = "633c7b8891cfcba2af6aa741f07696ff";
-            // Here we are building the URL we need to query the database
+            // Here we are building the URL we need to query the database for 2 out of the 3 calls that we make, the first call being used for the 5 day forecast, the second for our current weather
             var queryURL = "https://api.openweathermap.org/data/2.5/forecast?q=" +
                 city + "&units=imperial&appid=" + APIKey;
             var queryURL1 = "https://api.openweathermap.org/data/2.5/weather?q=" +
@@ -65,7 +73,7 @@
                 .then(function (response) {
                     // Log the resulting object
                     console.log(response);
-                    // Logs Temperature Next Day
+                    // Establish variables for all of our 5 day forecast weather data
                     var temp1 = response.list[5].main.temp + ' F'
                     var date1 = response.list[5].dt_txt.slice(0, 10)
                     var hum1 = 'humidity: ' + response.list[5].main.humidity + '%'
@@ -91,6 +99,7 @@
                     var hum5 = 'humidity: ' + response.list[37].main.humidity + '%'
                     var sky5 = response.list[37].weather[0].main
                     console.log(temp5, date5, hum5, sky5)
+                    // Once variables are created new cards are created for each day. Each of the containers containing these cards are emptied so that we do not append more cards than needed on different searches
                     $('#5day').text('5-Day Forecast')
                     $('#forecast').empty().append('<div class=col-lg-2><div id = "day1" class="card"><p id = "weather-1"></p></div></div>')
                     $('#weather-1').empty().append('<p class ="p1">')
@@ -152,6 +161,7 @@
                     $('#forecast').append('<div class=col-lg-2><div id = "day4" class="card"><p id = "weather-4"></p></div></div>')
                     $('#weather-4').empty().append('<p class ="p1">')
                     $('#weather-4 .p1').append(date4)
+                    // Depending on whether the sky is clear, cloudy,raining, or snowing a different image will be appended after the date
                     if(sky4 == 'Clear'){
                         $('#weather-4').append('<img src="Assets/Sunny.png">')
                     }
@@ -192,6 +202,7 @@
 
 
                 })
+            // Second call which will receive data from our current weather conditions api
             $.ajax({
                 url: queryURL1,
                 method: "GET"
@@ -199,14 +210,17 @@
                 // We store all of the retrieved data inside of an object called "response"
                 .then(function (response) {
                     console.log(response)
+                // Current weather data is stored as variables
                     var tempC = response.main.temp;
                     var humC = response.main.humidity;
                     var windC = response.wind.speed;
                     var DateNow = Date.now();
+                // Date information is stored in an unfavorable way, thus using Slice and toString we are able to get the date in a better format
                     var DN = ((Date(DateNow.toString())).toString()).slice(0,16)
                     var lat = response.coord.lat;
                     var lon = response.coord.lon;
                     var skyC = response.weather[0].main;
+                // Current weather variables are appened onto a new card which is appended, initially clearing the container so there is no overlap on new searches
                     $('#today').empty().append('<div class="card"><div id= "current" class="card-body"></div></div>')
                     $('#current').empty().append('<p class ="p1">')
                     $('#current .p1').append(city+" "+DN)
@@ -228,6 +242,7 @@
                     $('#current .p3').append(humC + '%')
                     $('#current').append('<p class ="p4">')
                     $('#current .p4').append(windC + ' MPH')
+                    // Our final call which will get our UV index
                     var queryURL2 = "http://api.openweathermap.org/data/2.5/uvi?lat=" + lat + "&lon=" + lon + "&appid=" + APIKey;
                     $.ajax({
                         url: queryURL2,
@@ -235,7 +250,9 @@
                     })
                         .then(function (response) {
                             console.log(response)
+                            // UV index is stored as a variable
                             var uv = response.value
+                            // Our variable is appended to the bottom of our current weather card, and background color changes depending on severity of UV index
                             $('#current').append('<p class ="p5">')
                             $('#current .p5').append('UV index: '+uv)
                             if(uv <= 5){
@@ -251,13 +268,18 @@
                         })
                 })
         }
-
+        // Search Function is run once the search button is clicked and if the city Input is not empty
         $('#button-addon1').on('click', function () {
+        // Variable for city is pulled from the value of the input
             city = $('#city').val()
             if (city != "") {
+                // If the input search is the same as the last button made then a new button is prepended under the search
                 if (city != $('#search').val()) {
                     $('#city-buttons').prepend($('<input>').attr({ class: "btn btn-outline-secondary", id: 'search', type: 'button', value: $('#city').val() }));
+                // Once button is formed setTimeout allows for the next function to respond 400 ms after search button is clicked
+                // I have been told by a friend that this is not the ideal way to do this, as I would want to use a promise, but I am unfamiliar so this is a workaround
                     setTimeout(function () {
+                // Once Timeout is finished clicking on a history button will return the search function for the city clicked
                         $("#search").on('click', function () {
                             city = $(this).val()
                             return search();
@@ -271,6 +293,7 @@
 
 
         })
+        // This function works similarly to the click function above, but this responds to an 'enter' key press anywhere on this page
         $(document).keypress(function (e) {
             if (e.which == 13) {
                 city = $('#city').val()
@@ -292,9 +315,6 @@
         }
         );
 
-        $("#search").on('click', function () {
-            console.log('Anything')
-        })
 
 
 
